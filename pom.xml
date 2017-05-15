@@ -21,10 +21,15 @@
 - 3. create avro.outputDirectory ${project.basedir}/src/main/java/avro as defined in properties
 - 4. add avro.outputDirectory as a source directory to project's BuildPath 
 - 5. create two maven Run Configurations: 
--    "mvn SpecificMain" with goals clean generate-sources compile exec:java -Dexec.mainClass="example.SpecificMain" 
--    "mvn GenericMain" with goals clean compile exec:java -Dexec.mainClass="example.GenericMain" 
-- 6. Note that avro-maven-plugin will not work from pluginManagement section
-- 7. Note so ignore warning "Plugin execution not covered by lifecycle configuration"
+-    "mvn SpecificMain" with goals 
+-        clean generate-sources compile exec:java -Dexec.mainClass="example.SpecificMain" 
+-    "mvn GenericMain" with goals 
+-        clean compile exec:java -Dexec.mainClass="example.GenericMain" 
+- 6. NOTE that avro-maven-plugin needs to be placed under project/build/plugins 
+-    because avro java source files will not be generated if the plugin is 
+-    placed under project/build/pluginManagement
+- 7. just ignore the pom.xml warning "Plugin execution not covered by 
+ -   lifecycle configuration"
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
