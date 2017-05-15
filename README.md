@@ -43,3 +43,5 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.74-b02, mixed mode)
 Version: Neon.3 Release (4.6.3) 
 Build id: 20170314-1500
 
+* Apache Maven 3.5.0 
+
