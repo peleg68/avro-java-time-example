@@ -77,7 +77,9 @@ public class SpecificMain {
 				// many items.
 				user = dataFileReader.next(user);
 				System.out.println(user);
-				System.out.println(objectMapper.writeValueAsString(user));
+				String json = objectMapper.writeValueAsString(user);
+				System.out.println(json);
+				System.out.println(objectMapper.readValue(json, User.class));
 			}
 		} finally {
 			dataFileReader.close();
