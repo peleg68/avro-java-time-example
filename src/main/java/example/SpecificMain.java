@@ -20,11 +20,10 @@ package example;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLClassLoader;
 import java.time.Instant;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumReader;
@@ -67,8 +66,8 @@ public class SpecificMain {
 		DatumReader<User> userDatumReader = new SpecificDatumReader<User>(User.class);
 		DataFileReader<User> dataFileReader = null;
 		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.registerModule(new Jdk8Module());
-		objectMapper.addMixIn(User.class, IgnoreSchemaProperty.class);
+		objectMapper.addMixIn(User.class, UserMixIn.class);
+		objectMapper.registerModule(new JavaTimeModule());
 		try {
 			dataFileReader = new DataFileReader<User>(file, userDatumReader);
 			User user = null;

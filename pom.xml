@@ -46,7 +46,7 @@
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.11.0</version>
         </dependency>
     </dependencies>
@@ -73,6 +73,7 @@
 						<sourceDirectory>${avro.sourceDirectory}</sourceDirectory>
 						<outputDirectory>${avro.outputDirectory}</outputDirectory>
                         <customConversions>org.apache.avro.data.TimeConversions$TimestampMillisConversion</customConversions>
+                        <stringType>String</stringType>
 					</configuration>
 				</execution>
 			</executions>
