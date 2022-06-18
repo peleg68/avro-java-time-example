@@ -76,10 +76,10 @@ public class SpecificMain {
 				// allocating and garbage collecting many objects for files with
 				// many items.
 				user = dataFileReader.next(user);
-				System.out.println(user);
+				System.out.printf("%17s: %s%n", "Original", user);
 				String json = objectMapper.writeValueAsString(user);
-				System.out.println(json);
-				System.out.println(objectMapper.readValue(json, User.class));
+				System.out.printf("%17s: %s%n", "JSON", json);
+				System.out.printf("%17s: %s%n", "Desered from JSON", objectMapper.readValue(json, User.class));
 			}
 		} finally {
 			dataFileReader.close();
