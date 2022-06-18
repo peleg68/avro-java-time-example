@@ -62,6 +62,7 @@
 					<configuration>
 						<sourceDirectory>${avro.sourceDirectory}</sourceDirectory>
 						<outputDirectory>${avro.outputDirectory}</outputDirectory>
+                        <customConversions>org.apache.avro.data.TimeConversions$TimestampMillisConversion</customConversions>
 					</configuration>
 				</execution>
 			</executions>
