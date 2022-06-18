@@ -11,3 +11,5 @@ src/main/resources/git-revision.properties
 .idea/
 
 src/main/avro/
+
+users.avro
