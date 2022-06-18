@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.net.URLClassLoader;
 import java.time.Instant;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumReader;
@@ -64,6 +66,9 @@ public class SpecificMain {
 		// Deserialize Users from disk
 		DatumReader<User> userDatumReader = new SpecificDatumReader<User>(User.class);
 		DataFileReader<User> dataFileReader = null;
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new Jdk8Module());
+		objectMapper.addMixIn(User.class, IgnoreSchemaProperty.class);
 		try {
 			dataFileReader = new DataFileReader<User>(file, userDatumReader);
 			User user = null;
@@ -73,6 +78,7 @@ public class SpecificMain {
 				// many items.
 				user = dataFileReader.next(user);
 				System.out.println(user);
+				System.out.println(objectMapper.writeValueAsString(user));
 			}
 		} finally {
 			dataFileReader.close();
