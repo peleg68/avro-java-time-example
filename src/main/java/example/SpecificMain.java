@@ -20,6 +20,8 @@ package example;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLClassLoader;
+import java.time.Instant;
 
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
@@ -35,16 +37,18 @@ public class SpecificMain {
 		User user1 = new User();
 		user1.setName("Alyssa");
 		user1.setFavoriteNumber(256);
+		user1.setStartTime(Instant.now());
 		// Leave favorite color null
 
 		// Alternate constructor
-		User user2 = new User("Ben", 7, "red");
+		User user2 = new User("Ben", 7, "red", Instant.now());
 
 		// Construct via builder
 		User user3 = User.newBuilder()
 				.setName("Charlie")
 				.setFavoriteColor("blue")
 				.setFavoriteNumber(null)
+				.setStartTime(Instant.now())
 				.build();
 
 		// Serialize user1 and user2 to disk
